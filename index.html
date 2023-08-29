@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tip Calculator - Module 04 Assignment</title>
+</head>
+
+<body>
+  <script>
+
+//function to verify a valid service quality was entered.
+  function getServiceQuality() {
+        while (true) {
+          var serviceQuality = prompt("How was the service quality (great/ok/poor)?").toLowerCase();
+
+          if (serviceQuality === "great" || serviceQuality === "ok" || serviceQuality === "poor") {
+            return serviceQuality;
+          } else {
+            alert("Invalid input. Please enter 'great', 'ok', or 'poor'.");
+          }
+        }
+      }
+
+//function to verify a service amount between $5.00 and $500.00 was entered
+      function getServiceAmount() {
+        while (true) {
+          var serviceAmount = parseFloat(prompt("Enter the dollar amount of the service ($5.00 - $500.00):"));
+          if (serviceAmount >= 5.00 && serviceAmount <= 500.00) {
+            return serviceAmount;
+          } else {
+            alert("Invalid input. Please enter an amount between $5.00 and $500.00.");
+          }
+        }
+      }
+
+//function to calculate the tip amount and return the value.
+      function calculateTip(serviceAmount, serviceQuality) {
+        var tipPercentage;
+        if (serviceQuality === "great") {
+          tipPercentage = 0.20;
+        } else if (serviceQuality === "ok") {
+          tipPercentage = 0.15;
+        } else {
+          tipPercentage = 0.10;
+        }
+
+        var tipAmount = serviceAmount * tipPercentage;
+        return tipAmount;
+      }
+
+//Function to enter the dollar amount of the service and ask if the service quality was great, ok, or poor (assume great service gets a 20% tip, Ok service 15%, poor service 10%).
+      function main() {
+        alert("Welcome to the Tip Calculator!");
+
+        var serviceAmount = getServiceAmount();
+        var serviceQuality = getServiceQuality();
+
+        var tipAmount = calculateTip(serviceAmount, serviceQuality);
+
+        document.write("Service amount: $" + serviceAmount.toFixed(2) +
+              "\nRecommended tip (" + serviceQuality + " service quality): $" + tipAmount.toFixed(2));
+      }
+
+      main();
+
+  </script>
+</body>
+</html>
